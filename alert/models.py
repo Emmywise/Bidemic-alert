@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 # Create your models here.
 
+# merchant model
 class Merchant(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -11,6 +12,8 @@ class Merchant(models.Model):
     def __str__(self):
         return '%s' % self.first_name
 
+
+#product model
 class Product(models.Model):
     merchant = models.ForeignKey(Merchant, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=100)

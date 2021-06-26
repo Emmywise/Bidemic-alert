@@ -1,27 +1,32 @@
 from alert.forms import marchantForm
 from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
 from .serializers import *
 from .models import *
 from .forms import *
-# from rest_framework.response import Response
-# from rest_framework import status
-# from rest_framework.views import APIView
-# Create your views here.
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
 
-# class MerchantView(APIView):
-#     # parser_class = (FileUploadParser,)
-#     def post(self, request):
-#         serializer = MerchantSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class MerchantView(APIView):
 
+    def post(self, request): #post request for merchant class
+        serializer = MerchantSerializer(data=request.data)
+        if serializer.is_valid(): # check if data is valid
+            serializer.save() # save the data collect
+            return Response(serializer.data, status=status.HTTP_201_CREATED) #response status if successs
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) # error status
+
+    def get(self, request, format=None ): #get request for merchant class
+        merchant = Merchant.objects.all() # get all the available data
+        serializer = MerchantSerializer(merchant, many=True)
+        return Response(serializer.data) #response to display data
+        
 def home(request):
-    return render(request, 'alert/index.html')
+    return render(request, 'alert/index.html') #rendering index page as home
 
 
 def register_merchant(request):

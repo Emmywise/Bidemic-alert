@@ -16,17 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from alert import views
-from alert.views import Merchant
+from alert.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/marchant/', MerchantView.as_view()),
+    path('api/marchant/', MerchantView.as_view()),
     path('dashboard/', views.home, name='home'),
     path('merchant/register/', views.register_merchant, name='register-merchant'),
     path('view/merchant/', views.Viewmerchant, name='view-merchant'),
     path('register/product/', views.register_product, name='register-product'),
     path('view/product/', views.Viewproduct, name='view-product'),
-    # path('view-account-memo/', views.ViewAccountMemo, name="view-account-memo"),
 
 ]
 
