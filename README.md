@@ -1,4 +1,4 @@
-# BIDAMIC API
+# Bidemic-alert
 
 ## INTRODUCTION
 This API contains endpoints that take data, store the data and display the data taken on the frontend. 
