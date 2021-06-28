@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
 
+
 class MerchantView(APIView):
 
     def post(self, request): #post request for merchant class
@@ -24,6 +25,8 @@ class MerchantView(APIView):
         merchant = Merchant.objects.all() # get all the available data
         serializer = MerchantSerializer(merchant, many=True)
         return Response(serializer.data) #response to display data
+
+   
         
 def home(request):
     return render(request, 'alert/index.html') #rendering index page as home
@@ -33,7 +36,7 @@ def register_merchant(request):
     if request.method == 'POST':  # making sure its a post request
         form = marchantForm(request.POST)
         if form.is_valid():  # check if data is valid
-            form.save()  # save the data collect
+           form.save()  # save the data collect
         return HttpResponseRedirect(reverse("view-merchant"))  # redirect to next page after saving file
     else:
         form = marchantForm

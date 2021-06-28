@@ -21,7 +21,7 @@ from alert.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/marchant/', MerchantView.as_view()),
-    path('dashboard/', views.home, name='home'),
+    path('', views.home, name='home'),
     path('merchant/register/', views.register_merchant, name='register-merchant'),
     path('view/merchant/', views.Viewmerchant, name='view-merchant'),
     path('register/product/', views.register_product, name='register-product'),
